@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PTRevolutTaskTests/ExchangeCalculatorTests.swift"
+            timestampString = "528983489.94808"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "testEurToGbp()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PTRevolutTaskTests.ExchangeCalculatorTests.testEurToGbp() -&gt; ()"
+                  moduleName = "PTRevolutTaskTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ptodorov/Projects/Personal/PTRevolutTask/PTRevolutTaskTests/ExchangeCalculatorTests.swift"
+                  timestampString = "528982513.821331"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; Swift.Bool in PTRevolutTaskTests.ExchangeCalculatorTests.testEurToGbp() -&gt; ()"
+                  moduleName = "PTRevolutTaskTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ptodorov/Projects/Personal/PTRevolutTask/PTRevolutTaskTests/ExchangeCalculatorTests.swift"
+                  timestampString = "528982513.823526"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "14">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PTRevolutTaskTests/ExchangeCalculatorTests.swift"
+            timestampString = "528983489.948145"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "testGbpToUsd()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PTRevolutTaskTests.ExchangeCalculatorTests.testGbpToUsd() -&gt; ()"
+                  moduleName = "PTRevolutTaskTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ptodorov/Projects/Personal/PTRevolutTask/PTRevolutTaskTests/ExchangeCalculatorTests.swift"
+                  timestampString = "528982513.826271"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "187">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; Swift.Bool in PTRevolutTaskTests.ExchangeCalculatorTests.testGbpToUsd() -&gt; ()"
+                  moduleName = "PTRevolutTaskTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ptodorov/Projects/Personal/PTRevolutTask/PTRevolutTaskTests/ExchangeCalculatorTests.swift"
+                  timestampString = "528982513.827785"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "14">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PTRevolutTaskTests/ExchangeCalculatorTests.swift"
+            timestampString = "528983489.948195"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "testGbpToEur()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PTRevolutTaskTests.ExchangeCalculatorTests.testGbpToEur() -&gt; ()"
+                  moduleName = "PTRevolutTaskTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ptodorov/Projects/Personal/PTRevolutTask/PTRevolutTaskTests/ExchangeCalculatorTests.swift"
+                  timestampString = "528982513.829681"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "184">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; Swift.Bool in PTRevolutTaskTests.ExchangeCalculatorTests.testGbpToEur() -&gt; ()"
+                  moduleName = "PTRevolutTaskTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ptodorov/Projects/Personal/PTRevolutTask/PTRevolutTaskTests/ExchangeCalculatorTests.swift"
+                  timestampString = "528982513.831343"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "14">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
