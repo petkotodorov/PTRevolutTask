@@ -626,6 +626,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y9P8PV9GUM;
 				INFOPLIST_FILE = PTRevolutTask/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pt.PTRevolutTask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -642,6 +643,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y9P8PV9GUM;
 				INFOPLIST_FILE = PTRevolutTask/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pt.PTRevolutTask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -659,6 +661,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y9P8PV9GUM;
 				INFOPLIST_FILE = PTRevolutTaskTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pt.PTRevolutTaskTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -677,6 +680,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y9P8PV9GUM;
 				INFOPLIST_FILE = PTRevolutTaskTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pt.PTRevolutTaskTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3AFF3AA2BB2617560CE2451B5EC46A9D"
-               BuildableName = "Pods_PTRevolutTask.framework"
-               BlueprintName = "Pods-PTRevolutTask"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               BlueprintIdentifier = "3D8313801F84305A00EF8CC3"
+               BuildableName = "PTRevolutTask.app"
+               BlueprintName = "PTRevolutTask"
+               ReferencedContainer = "container:PTRevolutTask.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,7 +29,26 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3D8313941F84305A00EF8CC3"
+               BuildableName = "PTRevolutTaskTests.xctest"
+               BlueprintName = "PTRevolutTaskTests"
+               ReferencedContainer = "container:PTRevolutTask.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "3D8313801F84305A00EF8CC3"
+            BuildableName = "PTRevolutTask.app"
+            BlueprintName = "PTRevolutTask"
+            ReferencedContainer = "container:PTRevolutTask.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -44,15 +63,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3AFF3AA2BB2617560CE2451B5EC46A9D"
-            BuildableName = "Pods_PTRevolutTask.framework"
-            BlueprintName = "Pods-PTRevolutTask"
-            ReferencedContainer = "container:Pods.xcodeproj">
+            BlueprintIdentifier = "3D8313801F84305A00EF8CC3"
+            BuildableName = "PTRevolutTask.app"
+            BlueprintName = "PTRevolutTask"
+            ReferencedContainer = "container:PTRevolutTask.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -62,6 +82,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "3D8313801F84305A00EF8CC3"
+            BuildableName = "PTRevolutTask.app"
+            BlueprintName = "PTRevolutTask"
+            ReferencedContainer = "container:PTRevolutTask.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
