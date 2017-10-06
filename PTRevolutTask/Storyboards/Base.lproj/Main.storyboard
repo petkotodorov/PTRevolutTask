@@ -4,7 +4,9 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -117,10 +119,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zxv-po-sZ9">
-                                        <rect key="frame" x="5" y="0.0" width="80" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="MBe-a5-xYl"/>
-                                        </constraints>
+                                        <rect key="frame" x="5" y="0.0" width="94" height="44"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -130,7 +129,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbd-hQ-xfj">
-                                        <rect key="frame" x="290" y="0.0" width="80" height="44"/>
+                                        <rect key="frame" x="276.5" y="0.0" width="93.5" height="44"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <state key="normal" title="Exchange">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -139,8 +138,8 @@
                                             <action selector="onExchange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TsU-Xj-5ly"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V62-0G-omK">
-                                        <rect key="frame" x="95" y="0.0" width="185" height="44"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="V62-0G-omK">
+                                        <rect key="frame" x="109" y="0.0" width="157.5" height="44"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -150,6 +149,7 @@
                                     <constraint firstItem="Zxv-po-sZ9" firstAttribute="leading" secondItem="qvT-eu-waa" secondAttribute="leading" constant="5" id="8lQ-L6-RbC"/>
                                     <constraint firstItem="nbd-hQ-xfj" firstAttribute="centerY" secondItem="Zxv-po-sZ9" secondAttribute="centerY" id="AcG-bd-0qf"/>
                                     <constraint firstAttribute="height" constant="44" id="C7A-78-gVX"/>
+                                    <constraint firstItem="Zxv-po-sZ9" firstAttribute="width" secondItem="qvT-eu-waa" secondAttribute="width" multiplier="0.25" id="Cit-bt-6CM"/>
                                     <constraint firstItem="V62-0G-omK" firstAttribute="centerY" secondItem="qvT-eu-waa" secondAttribute="centerY" id="Q2M-pE-6Di"/>
                                     <constraint firstItem="V62-0G-omK" firstAttribute="leading" secondItem="Zxv-po-sZ9" secondAttribute="trailing" constant="10" id="QE2-nn-IAO"/>
                                     <constraint firstAttribute="trailing" secondItem="nbd-hQ-xfj" secondAttribute="trailing" constant="5" id="W0U-yY-RL0"/>
@@ -163,10 +163,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORt-vC-ns2" customClass="ExchangeContainer" customModule="PTRevolutTask" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="300"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="280"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="rUX-G6-xgm"/>
+                                    <constraint firstAttribute="height" constant="280" id="rUX-G6-xgm"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -175,6 +175,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qvT-eu-waa" secondAttribute="trailing" id="9IP-aq-cDN"/>
                             <constraint firstItem="ORt-vC-ns2" firstAttribute="top" secondItem="qvT-eu-waa" secondAttribute="bottom" id="LhJ-9H-U7e"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="qvT-eu-waa" secondAttribute="top" id="NjE-Tw-W4b"/>
+                            <constraint firstItem="ORt-vC-ns2" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="WWm-aS-IsQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ORt-vC-ns2" secondAttribute="trailing" id="XBO-z4-3Lw"/>
                             <constraint firstItem="ORt-vC-ns2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YMX-tI-Nei"/>
                             <constraint firstItem="qvT-eu-waa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cEV-Fc-0DC"/>

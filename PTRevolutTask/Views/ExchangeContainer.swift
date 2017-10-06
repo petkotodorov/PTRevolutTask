@@ -32,6 +32,10 @@ class ExchangeContainer: UIView {
         }
     }
     
+    override func needsUpdateConstraints() -> Bool {
+        return true
+    }
+    
     weak var delegate: ExchangeDelegate?
     
     override init(frame: CGRect) {
@@ -47,30 +51,31 @@ class ExchangeContainer: UIView {
     }
     
     fileprivate func initViews() {
-        baseCurrencyView = ExchangeScrollView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height/2))
-        baseCurrencyView.dataSource = self
-        baseCurrencyView.delegate = self
-        addSubview(baseCurrencyView)
+        let width = UIScreen.main.bounds.width
+        baseCurrencyView = ExchangeScrollView(frame: CGRect(x: 0, y: 0, width: width, height: bounds.height/2))
         baseCurrencyView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(baseCurrencyView)
         NSLayoutConstraint.activate([
             baseCurrencyView.leadingAnchor.constraint(equalTo: leadingAnchor),
             baseCurrencyView.trailingAnchor.constraint(equalTo: trailingAnchor),
             baseCurrencyView.topAnchor.constraint(equalTo: topAnchor),
             baseCurrencyView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5)
         ])
+        baseCurrencyView.dataSource = self
+        baseCurrencyView.delegate = self
         
-        exchangedCurrencyView = ExchangeScrollView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height/2))
-        exchangedCurrencyView.backgroundColor = .green
-        exchangedCurrencyView.dataSource = self
-        exchangedCurrencyView.delegate = self
-        addSubview(exchangedCurrencyView)
+        exchangedCurrencyView = ExchangeScrollView(frame: CGRect(x: 0, y: 0, width: width, height: bounds.height/2))
         exchangedCurrencyView.translatesAutoresizingMaskIntoConstraints = false
+        exchangedCurrencyView.backgroundColor = .green
+        addSubview(exchangedCurrencyView)
         NSLayoutConstraint.activate([
             exchangedCurrencyView.leadingAnchor.constraint(equalTo: leadingAnchor),
             exchangedCurrencyView.trailingAnchor.constraint(equalTo: trailingAnchor),
             exchangedCurrencyView.topAnchor.constraint(equalTo: baseCurrencyView.bottomAnchor),
             exchangedCurrencyView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5)
         ])
+        exchangedCurrencyView.dataSource = self
+        exchangedCurrencyView.delegate = self
     }
     
     func exchange() throws -> Bool {

@@ -12,7 +12,6 @@ protocol CurrencyViewDelegate: class {
     func didReturnValue(_ value: Float, fromPage page: CurrencyView)
 }
 
-//TODO: set and retrive value from textfield
 class CurrencyView: UIView {
     
     weak var delegate: CurrencyViewDelegate?
