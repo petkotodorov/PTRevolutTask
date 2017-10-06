@@ -44,6 +44,12 @@ class CurrencyView: UIView {
     func setTextValue(_ value: String) {
         txtFieldAmount.text = value
     }
+    
+    func getValue() -> Float {
+        guard let text = txtFieldAmount.text,
+            let floatValue = Float(text) else { return 0 }
+        return floatValue
+    }
   
 }
 

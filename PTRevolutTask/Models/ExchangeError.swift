@@ -12,4 +12,5 @@ enum ExchangeError: Error {
     case insufficienFunds
     case sameCurrencies
     case generalError
+    case emptyField
 }

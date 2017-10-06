@@ -37,11 +37,13 @@ class ExchangeViewController: UIViewController {
         do {
             try result = currencyContainer.exchange()
         } catch ExchangeError.generalError {
-            showAlert(withTitle: "Error", withMessage: "The exchange cannott be completed")
+            showAlert(withTitle: "Error", withMessage: "The exchange cannot be completed")
         } catch ExchangeError.insufficienFunds {
-            showAlert(withTitle: "Error", withMessage: "You have insufficientFunds")
+            showAlert(withTitle: "Error", withMessage: "You have insufficient funds")
         } catch ExchangeError.sameCurrencies {
             showAlert(withTitle: "Error", withMessage: "You cannot exchange the same currency")
+        } catch ExchangeError.emptyField {
+            showAlert(withTitle: "Error", withMessage: "Please, input amount")
         } catch{
         }
         guard result != nil else { return }

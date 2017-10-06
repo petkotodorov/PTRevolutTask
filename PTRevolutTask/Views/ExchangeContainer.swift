@@ -14,6 +14,9 @@ protocol ExchangeDelegate: class {
 
 class ExchangeContainer: UIView {
     
+    //TODO: centralize
+    let user = User()
+    
     fileprivate var baseCurrencyView: ExchangeScrollView!
     fileprivate var exchangedCurrencyView: ExchangeScrollView!
     
@@ -22,6 +25,7 @@ class ExchangeContainer: UIView {
         didSet {
             calculator.rates = rates
             updateScrolls()
+            updateActiveRate()
             //TODO: update the two exchange scrolls
         }
     }
@@ -66,19 +70,43 @@ class ExchangeContainer: UIView {
     }
     
     func exchange() throws -> Bool {
-        guard let baseAccount = baseCurrencyView.activePage?.account,
-            let exchangedAccount = exchangedCurrencyView.activePage?.account else {
-        throw ExchangeError.generalError
-        }
+        guard let basePage = baseCurrencyView.activePage,
+            let baseAccount = basePage.account,
+            let exchangedPage = exchangedCurrencyView.activePage,
+            let exchangedAccount = exchangedPage.account else { throw ExchangeError.generalError }
         guard baseAccount.currency != exchangedAccount.currency else { throw ExchangeError.sameCurrencies }
+        guard basePage.getValue() != 0 else { throw ExchangeError.emptyField }
+        guard baseAccount.amount - basePage.getValue() > 0 else { throw ExchangeError.insufficienFunds }
         return true
     }
     
     fileprivate func updateScrolls() {
+        guard let baseCurrencyField = baseCurrencyView.activePage?.txtFieldAmount,
+            let baseAccount = baseCurrencyView.activePage?.account,
+            let exchangeCurrencyField = exchangedCurrencyView.activePage?.txtFieldAmount,
+            let exchangeAccount = exchangedCurrencyView.activePage?.account else { return }
         
+        //check if either ofthe text fields is firstResponder and not empty, and change the value of the other one
+        if baseCurrencyField.isFirstResponder {
+            guard let currentValue = baseCurrencyField.text,
+                let floatValue = Float(currentValue) else { return }
+            let newValue = calculator.exchange(floatValue, fromCurrency: baseAccount.currency, toCurrency: exchangeAccount.currency).roundedToHundreds
+            baseCurrencyView.activePage?.setTextValue(String(newValue))
+        } else if exchangeCurrencyField.isFirstResponder {
+            guard let currentValue = exchangeCurrencyField.text,
+                let floatValue = Float(currentValue) else { return }
+            let newValue = calculator.exchange(floatValue, fromCurrency: exchangeAccount.currency, toCurrency: baseAccount.currency).roundedToHundreds
+            exchangedCurrencyView.activePage?.setTextValue(String(newValue))
+        }
     }
     
-
+    fileprivate func updateActiveRate() {
+        guard let baseCurrency = baseCurrencyView.activePage?.account?.currency,
+            let exchangeCurrency = exchangedCurrencyView.activePage?.account?.currency else { return }
+        let activeRate = calculator.activeExchangeRate(fromCurrency: baseCurrency, toCurrency: exchangeCurrency)
+        delegate?.didReturnActiveRate(activeRate)
+    }
+    
 }
 
 extension ExchangeContainer: ExchangeScrollViewDelegate {
@@ -98,8 +126,6 @@ extension ExchangeContainer: ExchangeScrollViewDelegate {
     
     func scrollView(_ scrollView: ExchangeScrollView, scrolledToAccount account: Account) {
         var activeRate: String!
-//        var baseAccount: Account
-//        var otherAccount: Account
         
         if scrollView == baseCurrencyView {
             guard let otherAccount = exchangedCurrencyView.activePage?.account else { return }
@@ -137,11 +163,11 @@ extension ExchangeContainer: ExchangeScrollViewDelegate {
 extension ExchangeContainer: ExchangeScrollViewDataSource {
     
     func accountsForItems(inScrollView scrollView: ExchangeScrollView) -> [Account] {
-        return User().availableCurrencies
+        return user.availableCurrencies
     }
     
     func numberOfItems(inScrollView scrollView: ExchangeScrollView) -> Int {
-        return User().availableCurrencies.count
+        return user.availableCurrencies.count
     }
 
 }
