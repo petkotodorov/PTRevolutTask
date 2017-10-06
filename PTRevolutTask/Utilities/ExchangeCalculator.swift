@@ -34,9 +34,9 @@ struct ExchangeCalculator {
         let toCurrencyRate = getElement(forCurrency: toCurrency)
         guard fromCurrencyRate != nil && toCurrencyRate != nil else { return 0 }
         if fromCurrency == .eur {
-            return toCurrencyRate!.rate//.roundedToTenThousands
+            return toCurrencyRate!.rate
         } else {
-            return (toCurrencyRate!.rate.roundedToTenThousands / fromCurrencyRate!.rate.roundedToTenThousands)//.roundedToTenThousands
+            return (toCurrencyRate!.rate.roundedToTenThousands / fromCurrencyRate!.rate.roundedToTenThousands)
         }
     }
     

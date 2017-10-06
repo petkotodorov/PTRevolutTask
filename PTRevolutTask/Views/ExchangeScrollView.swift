@@ -18,7 +18,6 @@ protocol ExchangeScrollViewDelegate: class {
     func scrollView(_ scrollView: ExchangeScrollView, returnedValue: Float, forAccount: Account)
 }
 
-//TODO: callback from activePage
 class ExchangeScrollView: UIView {
 
     weak var dataSource: ExchangeScrollViewDataSource? {
@@ -36,7 +35,6 @@ class ExchangeScrollView: UIView {
         return pages ?? 1
     }
     
-    private var accounts = [Account]()
     private var pages = [CurrencyView]()
     
     //MARK: Initializers
@@ -71,18 +69,17 @@ class ExchangeScrollView: UIView {
     }
     
     fileprivate func loadPages() {
-        if let source = dataSource?.accountsForItems(inScrollView: self) {
-            accounts = source
-            for pageNumber in 0..<numberOfPages {
-                let account = source[pageNumber]
-                let page = generateView()
-                page.account = account
-                page.delegate = self
-                pages.append(page)
-            }
-            setPages()
+        guard let source = dataSource?.accountsForItems(inScrollView: self) else { return }
+        for pageNumber in 0..<numberOfPages {
+            let account = source[pageNumber]
+            let page = generateView()
+            page.account = account
+            page.delegate = self
+            pages.append(page)
         }
+        setPages()
     }
+    
     
     fileprivate func setPages() {
         for pageNumber in 0..<numberOfPages {
