@@ -24,6 +24,10 @@ class ExchangeViewController: UIViewController {
         currencyContainer.accounts = userState.userAccounts
         continuousFetching()
         currencyContainer.delegate = self
+        
+        let gradientLayer = DoubleGradient()
+        gradientLayer.frame = view.bounds
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -38,7 +42,7 @@ class ExchangeViewController: UIViewController {
     @IBAction func onExchange(_ sender: UIButton) {
         var successfulExchange: Bool?
         do {
-            try successfulExchange = currencyContainer.exchange()
+            try successfulExchange = currencyContainer.exchangeCurrencies()
         } catch ExchangeError.generalError {
             showAlert(withTitle: "Error", withMessage: "The exchange cannot be completed")
         } catch ExchangeError.insufficienFunds {

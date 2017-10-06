@@ -31,6 +31,7 @@ class CurrencyView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        backgroundColor = .clear
         txtFieldAmount.keyboardType = .decimalPad
         txtFieldAmount.borderStyle = .none
         txtFieldAmount.textAlignment = .right

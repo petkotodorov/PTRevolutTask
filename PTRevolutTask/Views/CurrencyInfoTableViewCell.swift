@@ -15,7 +15,8 @@ class CurrencyInfoTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        lblAmount.textColor = .white
+        lblCurrency.textColor = .white
     }
 
 

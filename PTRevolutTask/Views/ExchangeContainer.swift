@@ -51,6 +51,7 @@ class ExchangeContainer: UIView {
     }
     
     fileprivate func initViews() {
+        backgroundColor = .clear
         let width = UIScreen.main.bounds.width
         baseCurrencyView = ExchangeScrollView(frame: CGRect(x: 0, y: 0, width: width, height: bounds.height/2))
         baseCurrencyView.translatesAutoresizingMaskIntoConstraints = false
@@ -66,7 +67,7 @@ class ExchangeContainer: UIView {
         
         exchangedCurrencyView = ExchangeScrollView(frame: CGRect(x: 0, y: 0, width: width, height: bounds.height/2))
         exchangedCurrencyView.translatesAutoresizingMaskIntoConstraints = false
-        exchangedCurrencyView.backgroundColor = .green
+        exchangedCurrencyView.backgroundColor = UIColor.customGreen
         addSubview(exchangedCurrencyView)
         NSLayoutConstraint.activate([
             exchangedCurrencyView.leadingAnchor.constraint(equalTo: leadingAnchor),

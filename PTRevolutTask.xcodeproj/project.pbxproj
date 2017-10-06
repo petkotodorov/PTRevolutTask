@@ -216,7 +216,6 @@
 				3DC9E3671F87A7DA00590510 /* ExchangeError.swift */,
 				3DC9E3691F87A81100590510 /* ResponseResult.swift */,
 				3D854E2F1F87C2B30012B9D1 /* UserData.swift */,
-				3D524D951F88269700FD891A /* DoubleGradient.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -224,6 +223,7 @@
 		3DCEBF9F1F869AC600B16654 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				3D524D951F88269700FD891A /* DoubleGradient.swift */,
 				3DA5D3EA1F84F40100D44B0C /* ExchangeCalculator.swift */,
 				3D8313A61F84315100EF8CC3 /* ApiClient.swift */,
 				3DA5D3E61F84342C00D44B0C /* Parser.swift */,
