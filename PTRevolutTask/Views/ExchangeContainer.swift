@@ -78,7 +78,7 @@ class ExchangeContainer: UIView {
         exchangedCurrencyView.delegate = self
     }
     
-    func exchange() throws -> Bool {
+    func exchangeCurrencies() throws -> Bool {
         guard let basePage = baseCurrencyView.activePage,
             let baseAccount = basePage.account,
             let exchangedPage = exchangedCurrencyView.activePage,
@@ -174,6 +174,12 @@ extension ExchangeContainer: ExchangeScrollViewDelegate {
 extension ExchangeContainer: ExchangeScrollViewDataSource {
     
     func accountsForItems(inScrollView scrollView: ExchangeScrollView) -> [Account] {
+        //rearrange randomly the array for the second scroll view, in order ho have different currencies visible
+        if scrollView == exchangedCurrencyView {
+            var tempArray = accounts
+            tempArray.rearrange(from: 0, to: accounts.count - 1)
+            return tempArray
+        }
         return accounts
     }
     
