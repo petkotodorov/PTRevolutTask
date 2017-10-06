@@ -28,6 +28,7 @@
 		3DC9E3661F87A79C00590510 /* RoundedFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC9E3651F87A79C00590510 /* RoundedFloat.swift */; };
 		3DC9E3681F87A7DA00590510 /* ExchangeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC9E3671F87A7DA00590510 /* ExchangeError.swift */; };
 		3DC9E36A1F87A81100590510 /* ResponseResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC9E3691F87A81100590510 /* ResponseResult.swift */; };
+		3DC9E36C1F87AC6700590510 /* ViewControllerAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC9E36B1F87AC6700590510 /* ViewControllerAlert.swift */; };
 		3DCEBF941F861FCA00B16654 /* ExchangeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCEBF931F861FCA00B16654 /* ExchangeScrollView.swift */; };
 		3DCEBF981F86224F00B16654 /* CurrencyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCEBF971F86224F00B16654 /* CurrencyView.xib */; };
 		3DCEBF9A1F86225D00B16654 /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCEBF991F86225D00B16654 /* CurrencyView.swift */; };
@@ -71,6 +72,7 @@
 		3DC9E3651F87A79C00590510 /* RoundedFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedFloat.swift; sourceTree = "<group>"; };
 		3DC9E3671F87A7DA00590510 /* ExchangeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeError.swift; sourceTree = "<group>"; };
 		3DC9E3691F87A81100590510 /* ResponseResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseResult.swift; sourceTree = "<group>"; };
+		3DC9E36B1F87AC6700590510 /* ViewControllerAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAlert.swift; sourceTree = "<group>"; };
 		3DCEBF931F861FCA00B16654 /* ExchangeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeScrollView.swift; sourceTree = "<group>"; };
 		3DCEBF971F86224F00B16654 /* CurrencyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyView.xib; sourceTree = "<group>"; };
 		3DCEBF991F86225D00B16654 /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				3DC9E3611F87A73C00590510 /* RearrangedArray.swift */,
 				3DC9E3651F87A79C00590510 /* RoundedFloat.swift */,
+				3DC9E36B1F87AC6700590510 /* ViewControllerAlert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				3DC9E3681F87A7DA00590510 /* ExchangeError.swift in Sources */,
 				3DCEBF9A1F86225D00B16654 /* CurrencyView.swift in Sources */,
 				3DC9E3621F87A73C00590510 /* RearrangedArray.swift in Sources */,
+				3DC9E36C1F87AC6700590510 /* ViewControllerAlert.swift in Sources */,
 				3D8313851F84305A00EF8CC3 /* AppDelegate.swift in Sources */,
 				3DA5D3ED1F84F53E00D44B0C /* Currency.swift in Sources */,
 				3D030D211F869BD800028E1C /* ExchangeContainer.swift in Sources */,
