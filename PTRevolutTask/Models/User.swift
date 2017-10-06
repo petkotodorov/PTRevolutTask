@@ -21,8 +21,13 @@ struct User {
         return ""
     }
     
-    func update(currency: Currency, wtihAmount: Float) {
-        
+    mutating func updateAccount(_ account: Currency, withAmount: Float) {
+        let index = availableCurrencies.index { (item) -> Bool in
+            item.currency == account
+        }
+        if let index = index {
+            availableCurrencies[index].amount = availableCurrencies[index].amount + withAmount
+        }
     }
     
 }

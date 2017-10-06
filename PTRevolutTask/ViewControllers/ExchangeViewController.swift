@@ -14,11 +14,14 @@ class ExchangeViewController: UIViewController {
     @IBOutlet weak var btnExchange: UIButton!
     @IBOutlet weak var currencyContainer: ExchangeContainer!
     
-    var userInfo: User!
+    var userState: UserData!
     var timer: Timer?
+    
+    fileprivate let repeatInterval: TimeInterval = 30
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        currencyContainer.accounts = userState.userAccounts
         continuousFetching()
         currencyContainer.delegate = self
     }
@@ -33,9 +36,9 @@ class ExchangeViewController: UIViewController {
     }
     
     @IBAction func onExchange(_ sender: UIButton) {
-        var result: Bool?
+        var successfulExchange: Bool?
         do {
-            try result = currencyContainer.exchange()
+            try successfulExchange = currencyContainer.exchange()
         } catch ExchangeError.generalError {
             showAlert(withTitle: "Error", withMessage: "The exchange cannot be completed")
         } catch ExchangeError.insufficienFunds {
@@ -46,8 +49,8 @@ class ExchangeViewController: UIViewController {
             showAlert(withTitle: "Error", withMessage: "Please, input amount")
         } catch{
         }
-        guard result != nil else { return }
-        showAlert(withTitle: "Ok", withMessage: "Success")
+        guard successfulExchange != nil else { return }
+        dismiss(animated: true, completion: nil)
     }
     
     fileprivate func showLoading(_ flag: Bool) {
@@ -58,7 +61,7 @@ class ExchangeViewController: UIViewController {
     }
     
     fileprivate func continuousFetching() {
-        timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { [weak self] (_) in
+        timer = Timer.scheduledTimer(withTimeInterval: repeatInterval, repeats: true) { [weak self] (_) in
             self?.showLoading(true)
             ApiClient.shared.fetchRates(completionHandler: { (result) -> (Void) in
                 self?.showLoading(false)
@@ -76,6 +79,12 @@ class ExchangeViewController: UIViewController {
 }
 
 extension ExchangeViewController: ExchangeDelegate {
+    
+    func didExchange(_ amount: Float, ofCurrency: Currency, andReceived: Float, ofOtherCurrency: Currency) {
+        userState.updateAccount(ofCurrency, withAmount: -amount)
+        userState.updateAccount(ofOtherCurrency, withAmount: andReceived)
+    }
+    
     func didReturnActiveRate(_ activeRate: String) {
         DispatchQueue.main.async {
             self.lblActiveRate.text = activeRate

@@ -16,6 +16,7 @@
 		3D83138F1F84305A00EF8CC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D83138D1F84305A00EF8CC3 /* LaunchScreen.storyboard */; };
 		3D83139A1F84305A00EF8CC3 /* PTRevolutTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8313991F84305A00EF8CC3 /* PTRevolutTaskTests.swift */; };
 		3D8313A71F84315100EF8CC3 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8313A61F84315100EF8CC3 /* ApiClient.swift */; };
+		3D854E301F87C2B30012B9D1 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D854E2F1F87C2B30012B9D1 /* UserData.swift */; };
 		3DA5D3E51F8432EF00D44B0C /* CurrencyElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA5D3E41F8432EF00D44B0C /* CurrencyElement.swift */; };
 		3DA5D3E71F84342C00D44B0C /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA5D3E61F84342C00D44B0C /* Parser.swift */; };
 		3DA5D3E91F84F29800D44B0C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA5D3E81F84F29800D44B0C /* User.swift */; };
@@ -60,6 +61,7 @@
 		3D8313991F84305A00EF8CC3 /* PTRevolutTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTRevolutTaskTests.swift; sourceTree = "<group>"; };
 		3D83139B1F84305A00EF8CC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D8313A61F84315100EF8CC3 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		3D854E2F1F87C2B30012B9D1 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		3DA5D3E41F8432EF00D44B0C /* CurrencyElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyElement.swift; sourceTree = "<group>"; };
 		3DA5D3E61F84342C00D44B0C /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		3DA5D3E81F84F29800D44B0C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				3DC9E3631F87A77500590510 /* Account.swift */,
 				3DC9E3671F87A7DA00590510 /* ExchangeError.swift */,
 				3DC9E3691F87A81100590510 /* ResponseResult.swift */,
+				3D854E2F1F87C2B30012B9D1 /* UserData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				TargetAttributes = {
 					3D8313801F84305A00EF8CC3 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					3D8313941F84305A00EF8CC3 = {
@@ -453,6 +457,7 @@
 				3DA5D3EB1F84F40100D44B0C /* ExchangeCalculator.swift in Sources */,
 				3DC9E3641F87A77500590510 /* Account.swift in Sources */,
 				3DA5D3E71F84342C00D44B0C /* Parser.swift in Sources */,
+				3D854E301F87C2B30012B9D1 /* UserData.swift in Sources */,
 				3DA856FD1F85399800461C45 /* HomeViewController.swift in Sources */,
 				3DC9E3681F87A7DA00590510 /* ExchangeError.swift in Sources */,
 				3DCEBF9A1F86225D00B16654 /* CurrencyView.swift in Sources */,

@@ -10,12 +10,10 @@ import UIKit
 
 protocol ExchangeDelegate: class {
     func didReturnActiveRate(_ activeRate: String)
+    func didExchange(_ amount: Float, ofCurrency: Currency, andReceived: Float, ofOtherCurrency: Currency)
 }
 
 class ExchangeContainer: UIView {
-    
-    //TODO: centralize
-    let user = User()
     
     fileprivate var baseCurrencyView: ExchangeScrollView!
     fileprivate var exchangedCurrencyView: ExchangeScrollView!
@@ -26,7 +24,11 @@ class ExchangeContainer: UIView {
             calculator.rates = rates
             updateScrolls()
             updateActiveRate()
-            //TODO: update the two exchange scrolls
+        }
+    }
+    var accounts = [Account]() {
+        didSet {
+            initViews()
         }
     }
     
@@ -34,11 +36,13 @@ class ExchangeContainer: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        guard accounts.count > 0 else { return }
         initViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        guard accounts.count > 0 else { return }
         initViews()
     }
     
@@ -76,7 +80,10 @@ class ExchangeContainer: UIView {
             let exchangedAccount = exchangedPage.account else { throw ExchangeError.generalError }
         guard baseAccount.currency != exchangedAccount.currency else { throw ExchangeError.sameCurrencies }
         guard basePage.getValue() != 0 else { throw ExchangeError.emptyField }
-        guard baseAccount.amount - basePage.getValue() > 0 else { throw ExchangeError.insufficienFunds }
+        guard baseAccount.amount - basePage.getValue() >= 0 else { throw ExchangeError.insufficienFunds }
+        
+        delegate?.didExchange(basePage.getValue(), ofCurrency: baseAccount.currency, andReceived: exchangedPage.getValue(), ofOtherCurrency: exchangedAccount.currency)
+        
         return true
     }
     
@@ -157,17 +164,16 @@ extension ExchangeContainer: ExchangeScrollViewDelegate {
         delegate?.didReturnActiveRate(activeRate)
     }
     
-    
 }
 
 extension ExchangeContainer: ExchangeScrollViewDataSource {
     
     func accountsForItems(inScrollView scrollView: ExchangeScrollView) -> [Account] {
-        return user.availableCurrencies
+        return accounts
     }
     
     func numberOfItems(inScrollView scrollView: ExchangeScrollView) -> Int {
-        return user.availableCurrencies.count
+        return accounts.count
     }
 
 }

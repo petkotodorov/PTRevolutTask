@@ -12,7 +12,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var tblAccountInfo: UITableView!
     
-    var userInfo = User()
+    let userState = UserData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +27,8 @@ class HomeViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? ExchangeViewController {
-            vc.userInfo = userInfo
+        if let exchangeController = segue.destination as? ExchangeViewController {
+            exchangeController.userState = userState
         }
     }
 
@@ -41,12 +41,12 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return userState.userAccounts.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyInfoTableViewCell", for: indexPath) as? CurrencyInfoTableViewCell {
-            let elem = userInfo.availableCurrencies[indexPath.row]
+            let elem = userState.userAccounts[indexPath.row]
             cell.lblAmount.text = "\(elem.amount) \(elem.currency.symbol)"
             cell.lblCurrency.text = "\(elem.currency.rawValue) - \(elem.currency.fullName)"
             return cell
