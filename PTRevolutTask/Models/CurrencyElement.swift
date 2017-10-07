@@ -10,6 +10,7 @@ import Foundation
 import SWXMLHash
 
 struct CurrencyElement {
+    
     let type: Currency
     let rate: Float
     

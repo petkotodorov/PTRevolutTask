@@ -9,6 +9,7 @@
 import UIKit
 
 class DoubleGradient : CAGradientLayer {
+    
     override init() {
         super.init()
         setup()

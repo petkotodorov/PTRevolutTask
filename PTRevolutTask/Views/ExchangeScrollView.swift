@@ -20,22 +20,20 @@ protocol ExchangeScrollViewDelegate: class {
 
 class ExchangeScrollView: UIView {
 
+    weak var delegate: ExchangeScrollViewDelegate?
     weak var dataSource: ExchangeScrollViewDataSource? {
         didSet {
             createUi()
         }
     }
-    weak var delegate: ExchangeScrollViewDelegate?
     
     var activeSlide: CurrencyView? 
-    
+    private var slides = [CurrencyView]()
+    private var pageControl: UIPageControl!
     private var pagingScrollView: UIScrollView!
     private var numberOfPages: Int {
         return dataSource?.numberOfItems(inScrollView: self) ?? 1
     }
-    
-    private var slides = [CurrencyView]()
-    private var pageControl: UIPageControl!
     
     //MARK: Initializers
     override init(frame: CGRect) {

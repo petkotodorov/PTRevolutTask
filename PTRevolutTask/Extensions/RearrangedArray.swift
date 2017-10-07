@@ -9,6 +9,7 @@
 import Foundation
 
 extension Array {
+    
     //rearranges an element of array to a new position
     mutating func rearrange(from: Int, to: Int) {
         guard !self.isEmpty,
@@ -18,4 +19,5 @@ extension Array {
             to < self.count else { return }
         insert(remove(at: from), at: to)
     }
+    
 }

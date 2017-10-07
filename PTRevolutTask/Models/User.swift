@@ -9,7 +9,8 @@
 import Foundation
 
 struct User {
-    var availableCurrencies = [Account(currency: .eur, amount: 100),
+    
+    private(set) var availableCurrencies = [Account(currency: .eur, amount: 100),
                                Account(currency: .gbp, amount: 100),
                                Account(currency: .usd, amount: 100)]
     

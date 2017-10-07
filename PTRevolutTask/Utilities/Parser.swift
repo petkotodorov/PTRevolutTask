@@ -22,4 +22,5 @@ struct Parser {
         elements.append(CurrencyElement(type: .eur, rate: 1))
         return elements
     }
+    
 }

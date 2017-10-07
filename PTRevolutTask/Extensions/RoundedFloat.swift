@@ -19,4 +19,5 @@ extension Float {
     var roundedToTenThousands: Float {
         return roundf(self * 10000) / 10000
     }
+    
 }

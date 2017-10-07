@@ -15,6 +15,7 @@ enum Currency: String {
 }
 
 extension Currency {
+    
     var fullName: String {
         switch self {
         case .eur:
@@ -36,4 +37,5 @@ extension Currency {
             return "$"
         }
     }
+    
 }

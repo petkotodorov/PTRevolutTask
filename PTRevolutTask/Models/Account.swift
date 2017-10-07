@@ -9,6 +9,8 @@
 import Foundation
 
 struct Account {
+    
     var currency: Currency
     var amount: Float
+    
 }
