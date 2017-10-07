@@ -42,7 +42,7 @@ class CurrencyView: UIView {
     }
     
     func setTextValue(_ value: Float) {
-        txtFieldAmount.text = value == 0 ? "" : String(value)
+        txtFieldAmount.text = value == 0 ? "" : value.stringValue //String(format:"%.02f", value) //
     }
     
     func getValue() -> Float {
@@ -61,18 +61,20 @@ extension CurrencyView: UITextFieldDelegate {
         }
         
         let newText = oldText.replacingCharacters(in: r, with: string)
-        let isNumeric = newText.isEmpty || (Double(newText) != nil)
         let numberOfDots = newText.components(separatedBy: ".").count - 1
-        
+        let numberOfComas = newText.components(separatedBy: ",").count - 1
+
         let numberOfDecimalDigits: Int
         if let dotIndex = newText.index(of: ".") {
             numberOfDecimalDigits = newText.distance(from: dotIndex, to: newText.endIndex) - 1
+        } else if let comaIndex = newText.index(of: ",") {
+            numberOfDecimalDigits = newText.distance(from: comaIndex, to: newText.endIndex) - 1
         } else {
             numberOfDecimalDigits = 0
         }
-        if isNumeric && numberOfDots <= 1 && numberOfDecimalDigits <= 2 && newText.count <= 8 {
-            let value = newText.count == 0 ? 0 : Float(newText)
-            delegate?.didReturnValue(value!, fromPage: self)
+        if numberOfDots <= 1 && numberOfComas <= 1 && numberOfDecimalDigits <= 2 && newText.count <= 8 {
+            let value = newText.count == 0 ? 0 : newText.floatValue
+            delegate?.didReturnValue(value, fromPage: self)
             return true
         }
         return false
