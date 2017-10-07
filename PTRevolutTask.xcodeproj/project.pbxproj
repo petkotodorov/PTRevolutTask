@@ -219,12 +219,12 @@
 			isa = PBXGroup;
 			children = (
 				3DA5D3E81F84F29800D44B0C /* User.swift */,
-				3DA5D3EC1F84F53E00D44B0C /* Currency.swift */,
+				3D854E2F1F87C2B30012B9D1 /* UserData.swift */,
 				3DA5D3E41F8432EF00D44B0C /* CurrencyElement.swift */,
 				3DC9E3631F87A77500590510 /* Account.swift */,
+				3DA5D3EC1F84F53E00D44B0C /* Currency.swift */,
 				3DC9E3671F87A7DA00590510 /* ExchangeError.swift */,
 				3DC9E3691F87A81100590510 /* ResponseResult.swift */,
-				3D854E2F1F87C2B30012B9D1 /* UserData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PTRevolutTaskTests/ExchangeCalculatorTests.swift"
-            timestampString = "529001664.777794"
+            filePath = "PTRevolutTask/Views/ExchangeContainer.swift"
+            timestampString = "529090970.0803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "testEurToGbp()"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "exchangeCurrencies()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PTRevolutTaskTests/ExchangeCalculatorTests.swift"
-            timestampString = "529001664.777898"
+            filePath = "PTRevolutTask/Views/ExchangeContainer.swift"
+            timestampString = "529090970.080447"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "testGbpToUsd()"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "exchangeCurrencies()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,61 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PTRevolutTaskTests/ExchangeCalculatorTests.swift"
-            timestampString = "529001664.777952"
+            filePath = "PTRevolutTask/Views/ExchangeContainer.swift"
+            timestampString = "529090970.080524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "testGbpToEur()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PTRevolutTask/Utilities/ApiClient.swift"
-            timestampString = "529054195.641029"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "handleResponse(data:response:error:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PTRevolutTask/Utilities/ApiClient.swift"
-            timestampString = "529054236.573138"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "handleResponse(data:response:error:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PTRevolutTask/Utilities/ApiClient.swift"
-            timestampString = "529054238.846172"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "handleResponse(data:response:error:)"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "exchangeCurrencies()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -29,6 +29,7 @@ class ApiClient {
 
 extension ApiClient {
     
+    //checks for both HTTP and server errors
     private func handleResponse(data: Data?, response: URLResponse?, error: Error?) -> ResponseResult {
         if let error = error {
             return ResponseResult.failure(error.localizedDescription)

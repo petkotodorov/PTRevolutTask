@@ -40,6 +40,7 @@ struct ExchangeCalculator {
         }
     }
     
+    //gets the coresponding element from the server response
     fileprivate func getElement(forCurrency currency: Currency) -> CurrencyElement? {
         return rates.first { $0.type == currency }
     }

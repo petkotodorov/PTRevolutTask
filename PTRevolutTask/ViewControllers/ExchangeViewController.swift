@@ -15,10 +15,10 @@ class ExchangeViewController: UIViewController {
     @IBOutlet weak var currencyContainer: ExchangeContainer!
     
     var userState: UserData!
-    var timer: Timer?
-    
-    fileprivate let repeatInterval: TimeInterval = 30
+    private var timer: Timer?
+    private let repeatInterval: TimeInterval = 30
 
+    //MARK: VC Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         currencyContainer.accounts = userState.userAccounts
@@ -36,6 +36,7 @@ class ExchangeViewController: UIViewController {
         timer?.invalidate()
     }
     
+    //MARK: Button actions
     @IBAction func onDismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -58,20 +59,15 @@ class ExchangeViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    fileprivate func showLoading(_ flag: Bool) {
-        DispatchQueue.main.async {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = flag
-        }
-    }
-    
-    fileprivate func setTimer() {
+    //MARK: Data fetching
+    private func setTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: repeatInterval, repeats: true) { [weak self] (_) in
             self?.fetchRates()
         }
         timer?.fire()
     }
     
-    fileprivate func fetchRates() {
+    private func fetchRates() {
         self.showLoading(true)
         ApiClient.shared.fetchRates(completionHandler: { (result) -> (Void) in
             self.showLoading(false)
@@ -82,6 +78,12 @@ class ExchangeViewController: UIViewController {
                 self.showAlert(withMessage: errorMessage)
             }
         })
+    }
+    
+    private func showLoading(_ flag: Bool) {
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = flag
+        }
     }
 
 }

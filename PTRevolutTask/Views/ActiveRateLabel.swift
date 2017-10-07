@@ -8,6 +8,7 @@
 
 import UIKit
 
+//UILabel used for active exchange rate. Custom padding from the sides and rounded border
 class ActiveRateLabel: UILabel {
     
     private let padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)

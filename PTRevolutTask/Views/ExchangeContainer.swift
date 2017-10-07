@@ -17,8 +17,8 @@ class ExchangeContainer: UIView {
     
     fileprivate var baseCurrencyView: ExchangeScrollView!
     fileprivate var exchangedCurrencyView: ExchangeScrollView!
-    
     fileprivate var calculator = ExchangeCalculator()
+    
     var rates = [CurrencyElement]() {
         didSet {
             calculator.rates = rates
@@ -26,6 +26,7 @@ class ExchangeContainer: UIView {
             updateActiveRate()
         }
     }
+    
     var accounts = [Account]() {
         didSet {
             initViews()
@@ -38,6 +39,7 @@ class ExchangeContainer: UIView {
     
     weak var delegate: ExchangeDelegate?
     
+    //MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         guard accounts.count > 0 else { return }
@@ -50,6 +52,7 @@ class ExchangeContainer: UIView {
         initViews()
     }
     
+    //Initializes and positions both scroll views
     fileprivate func initViews() {
         let width = UIScreen.main.bounds.width
         baseCurrencyView = ExchangeScrollView(frame: CGRect(x: 0, y: 0, width: width, height: bounds.height/2))
@@ -79,10 +82,41 @@ class ExchangeContainer: UIView {
         exchangedCurrencyView.delegate = self
     }
     
+    /**
+     Recalculates both scroll view text fields, when there's new response from server.
+     Text fields are being updated, depending on the fhe first responder
+     */
+    fileprivate func updateScrolls() {
+        guard let baseCurrencyField = baseCurrencyView.activeSlide?.txtFieldAmount,
+            let baseAccount = baseCurrencyView.activeSlide?.account,
+            let exchangeCurrencyField = exchangedCurrencyView.activeSlide?.txtFieldAmount,
+            let exchangeAccount = exchangedCurrencyView.activeSlide?.account else { return }
+        
+        //check if either of the text fields is firstResponder and not empty, and change the value of the other one
+        if baseCurrencyField.isFirstResponder {
+            guard let currentAmount = baseCurrencyView.activeSlide?.getValue() else { return }
+            let newAmount = calculator.exchange(currentAmount, fromCurrency: baseAccount.currency, toCurrency: exchangeAccount.currency).roundedToHundreds
+            exchangedCurrencyView.activeSlide?.setTextValue(newAmount)
+        } else if exchangeCurrencyField.isFirstResponder {
+            guard let currentAmount = exchangedCurrencyView.activeSlide?.getValue() else { return }
+            let newAmount = calculator.exchange(currentAmount, fromCurrency: exchangeAccount.currency, toCurrency: baseAccount.currency).roundedToHundreds
+            baseCurrencyView.activeSlide?.setTextValue(newAmount)
+        }
+    }
+    
+    //recalculates active exchange rate, when there's new response from server and sends it to the ViewController
+    fileprivate func updateActiveRate() {
+        guard let baseCurrency = baseCurrencyView.activeSlide?.account?.currency,
+            let exchangeCurrency = exchangedCurrencyView.activeSlide?.account?.currency else { return }
+        let activeRate = calculator.activeExchangeRate(fromCurrency: baseCurrency, toCurrency: exchangeCurrency)
+        delegate?.didReturnActiveRate(activeRate)
+    }
+    
+    //called when "Exchange" button is tapped. Checks for possible errors and updates UserData
     func exchangeCurrencies() throws -> Bool {
-        guard let basePage = baseCurrencyView.activePage,
+        guard let basePage = baseCurrencyView.activeSlide,
             let baseAccount = basePage.account,
-            let exchangedPage = exchangedCurrencyView.activePage,
+            let exchangedPage = exchangedCurrencyView.activeSlide,
             let exchangedAccount = exchangedPage.account else { throw ExchangeError.generalError }
         guard baseAccount.currency != exchangedAccount.currency else { throw ExchangeError.sameCurrencies }
         guard basePage.getValue() != 0 else { throw ExchangeError.emptyField }
@@ -96,76 +130,50 @@ class ExchangeContainer: UIView {
         return true
     }
     
-    fileprivate func updateScrolls() {
-        guard let baseCurrencyField = baseCurrencyView.activePage?.txtFieldAmount,
-            let baseAccount = baseCurrencyView.activePage?.account,
-            let exchangeCurrencyField = exchangedCurrencyView.activePage?.txtFieldAmount,
-            let exchangeAccount = exchangedCurrencyView.activePage?.account else { return }
-        
-        //check if either of the text fields is firstResponder and not empty, and change the value of the other one
-        if baseCurrencyField.isFirstResponder {
-            guard let currentAmount = baseCurrencyView.activePage?.getValue() else { return }
-            let newAmount = calculator.exchange(currentAmount, fromCurrency: baseAccount.currency, toCurrency: exchangeAccount.currency).roundedToHundreds
-            exchangedCurrencyView.activePage?.setTextValue(newAmount)
-        } else if exchangeCurrencyField.isFirstResponder {
-            guard let currentAmount = exchangedCurrencyView.activePage?.getValue() else { return }
-            let newAmount = calculator.exchange(currentAmount, fromCurrency: exchangeAccount.currency, toCurrency: baseAccount.currency).roundedToHundreds
-            baseCurrencyView.activePage?.setTextValue(newAmount)
-        }
-    }
-    
-    fileprivate func updateActiveRate() {
-        guard let baseCurrency = baseCurrencyView.activePage?.account?.currency,
-            let exchangeCurrency = exchangedCurrencyView.activePage?.account?.currency else { return }
-        let activeRate = calculator.activeExchangeRate(fromCurrency: baseCurrency, toCurrency: exchangeCurrency)
-        delegate?.didReturnActiveRate(activeRate)
-    }
-    
 }
 
 extension ExchangeContainer: ExchangeScrollViewDelegate {
     
     func scrollView(_ scrollView: ExchangeScrollView, returnedValue: Float, forAccount: Account) {
         if scrollView == baseCurrencyView {
-            guard let otherAccount = exchangedCurrencyView.activePage?.account else { return }
+            guard let otherAccount = exchangedCurrencyView.activeSlide?.account else { return }
             let newAmount = calculator.exchange(returnedValue, fromCurrency: forAccount.currency, toCurrency: otherAccount.currency).roundedToHundreds
-            exchangedCurrencyView.activePage?.setTextValue(newAmount)
-            baseCurrencyView.activePage?.lblAvailableAmount.textColor = forAccount.amount - returnedValue < 0 ? .red : .white
+            exchangedCurrencyView.activeSlide?.setTextValue(newAmount)
+            baseCurrencyView.activeSlide?.lblAvailableAmount.textColor = forAccount.amount - returnedValue < 0 ? .red : .white
         } else {
-            guard let baseAccount = baseCurrencyView.activePage?.account else { return }
+            guard let baseAccount = baseCurrencyView.activeSlide?.account else { return }
             let newAmount = calculator.exchange(returnedValue, fromCurrency: forAccount.currency, toCurrency: baseAccount.currency).roundedToHundreds
-            baseCurrencyView.activePage?.setTextValue(newAmount)
-            baseCurrencyView.activePage?.lblAvailableAmount.textColor = baseAccount.amount - newAmount < 0 ? .red : .white
+            baseCurrencyView.activeSlide?.setTextValue(newAmount)
+            baseCurrencyView.activeSlide?.lblAvailableAmount.textColor = baseAccount.amount - newAmount < 0 ? .red : .white
         }
     }
-    
     
     func scrollView(_ scrollView: ExchangeScrollView, scrolledToAccount account: Account) {
         var activeRate: String!
         
         if scrollView == baseCurrencyView {
-            guard let otherAccount = exchangedCurrencyView.activePage?.account else { return }
+            guard let otherAccount = exchangedCurrencyView.activeSlide?.account else { return }
             //calculate active rate from base currency to exchnaged one
             activeRate = calculator.activeExchangeRate(fromCurrency: account.currency, toCurrency: otherAccount.currency)
             //if there is amount value in the section, which is not scrolled, update the value in the new section
-            if let amount = exchangedCurrencyView.activePage?.getValue() {
+            if let amount = exchangedCurrencyView.activeSlide?.getValue() {
                 let newAmount = calculator.exchange(amount, fromCurrency: otherAccount.currency, toCurrency: account.currency).roundedToHundreds
-                scrollView.activePage?.setTextValue(newAmount)
+                scrollView.activeSlide?.setTextValue(newAmount)
                 //reset value in the section, which is not scrolled
             } else {
-                exchangedCurrencyView.activePage?.setTextValue(0)
+                exchangedCurrencyView.activeSlide?.setTextValue(0)
             }
         } else {
-            guard let otherAccount = baseCurrencyView.activePage?.account else { return }
+            guard let otherAccount = baseCurrencyView.activeSlide?.account else { return }
             //calculate active rate from base currency to exchnaged one
             activeRate = calculator.activeExchangeRate(fromCurrency: otherAccount.currency, toCurrency: account.currency)
             //if there is amount value in the section, which is not scrolled, update the value in the new section
-            if let amount = baseCurrencyView.activePage?.getValue() {
+            if let amount = baseCurrencyView.activeSlide?.getValue() {
                 let newAmount = calculator.exchange(amount, fromCurrency: otherAccount.currency, toCurrency: account.currency).roundedToHundreds
-                scrollView.activePage?.setTextValue(newAmount)
+                scrollView.activeSlide?.setTextValue(newAmount)
                 //reset value in the section, which is not scrolled
             } else {
-                baseCurrencyView.activePage?.setTextValue(0)
+                baseCurrencyView.activeSlide?.setTextValue(0)
             }
         }
         delegate?.didReturnActiveRate(activeRate)

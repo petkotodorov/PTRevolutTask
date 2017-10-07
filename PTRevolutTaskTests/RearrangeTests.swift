@@ -49,5 +49,17 @@ class RearrangeTests: XCTestCase {
         XCTAssert(arr[arr.count-1] == 3)
     }
     
+    func testFirstToOutOfBounds() {
+        arr.rearrange(from: 0, to: arr.count)
+        XCTAssert(arr[0] == 1)
+        XCTAssert(arr[4] == 5)
+    }
+    
+    func testLastToOutOfBounds() {
+        arr.rearrange(from: arr.count-1, to: -1)
+        XCTAssert(arr[0] == 1)
+        XCTAssert(arr[4] == 5)
+    }
+    
     
 }
