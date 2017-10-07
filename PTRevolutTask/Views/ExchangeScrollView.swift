@@ -31,11 +31,11 @@ class ExchangeScrollView: UIView {
     
     private var pagingScrollView: UIScrollView!
     private var numberOfPages: Int {
-        let pages = dataSource?.numberOfItems(inScrollView: self)
-        return pages ?? 1
+        return dataSource?.numberOfItems(inScrollView: self) ?? 1
     }
     
     private var pages = [CurrencyView]()
+    private var pageControl: UIPageControl!
     
     //MARK: Initializers
     override init(frame: CGRect) {
@@ -56,8 +56,20 @@ class ExchangeScrollView: UIView {
         layer.shadowOpacity = 0.6
         layer.shadowOffset = CGSize(width: 1, height: 1)
         
+        
         createScrollView()
         loadPages()
+        
+        pageControl = UIPageControl()
+        addSubview(pageControl)
+        pageControl.currentPage = 1
+        pageControl.numberOfPages = 3
+        pageControl.tintColor = .white
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            pageControl.centerXAnchor.constraint(equalTo: centerXAnchor),
+            pageControl.bottomAnchor.constraint(equalTo: bottomAnchor)
+            ])
     }
     
     fileprivate func createScrollView() {
@@ -78,6 +90,7 @@ class ExchangeScrollView: UIView {
         for pageNumber in 0..<numberOfPages {
             let account = source[pageNumber]
             let page = generateView()
+            page.tag = pageNumber
             page.account = account
             page.delegate = self
             pages.append(page)
@@ -110,6 +123,7 @@ class ExchangeScrollView: UIView {
             pages.rearrange(from: 0, to: pages.count-1)
         }
         activePage = pages[page]
+        pageControl.currentPage = activePage!.tag
         resetPages()
         guard let account = activePage?.account else { return }
         delegate?.scrollView(self, scrolledToAccount: account)

@@ -102,17 +102,15 @@ class ExchangeContainer: UIView {
             let exchangeCurrencyField = exchangedCurrencyView.activePage?.txtFieldAmount,
             let exchangeAccount = exchangedCurrencyView.activePage?.account else { return }
         
-        //check if either ofthe text fields is firstResponder and not empty, and change the value of the other one
+        //check if either of the text fields is firstResponder and not empty, and change the value of the other one
         if baseCurrencyField.isFirstResponder {
-            guard let currentValue = baseCurrencyField.text,
-                let floatValue = Float(currentValue) else { return }
-            let newValue = calculator.exchange(floatValue, fromCurrency: baseAccount.currency, toCurrency: exchangeAccount.currency).roundedToHundreds
-            baseCurrencyView.activePage?.setTextValue(newValue)
+            guard let currentAmount = baseCurrencyView.activePage?.getValue() else { return }
+            let newAmount = calculator.exchange(currentAmount, fromCurrency: baseAccount.currency, toCurrency: exchangeAccount.currency).roundedToHundreds
+            exchangedCurrencyView.activePage?.setTextValue(newAmount)
         } else if exchangeCurrencyField.isFirstResponder {
-            guard let currentValue = exchangeCurrencyField.text,
-                let floatValue = Float(currentValue) else { return }
-            let newValue = calculator.exchange(floatValue, fromCurrency: exchangeAccount.currency, toCurrency: baseAccount.currency).roundedToHundreds
-            exchangedCurrencyView.activePage?.setTextValue(newValue)
+            guard let currentAmount = exchangedCurrencyView.activePage?.getValue() else { return }
+            let newAmount = calculator.exchange(currentAmount, fromCurrency: exchangeAccount.currency, toCurrency: baseAccount.currency).roundedToHundreds
+            baseCurrencyView.activePage?.setTextValue(newAmount)
         }
     }
     
@@ -130,14 +128,14 @@ extension ExchangeContainer: ExchangeScrollViewDelegate {
     func scrollView(_ scrollView: ExchangeScrollView, returnedValue: Float, forAccount: Account) {
         if scrollView == baseCurrencyView {
             guard let otherAccount = exchangedCurrencyView.activePage?.account else { return }
-            let newValue = calculator.exchange(returnedValue, fromCurrency: forAccount.currency, toCurrency: otherAccount.currency).roundedToHundreds
-            exchangedCurrencyView.activePage?.setTextValue(newValue)
+            let newAmount = calculator.exchange(returnedValue, fromCurrency: forAccount.currency, toCurrency: otherAccount.currency).roundedToHundreds
+            exchangedCurrencyView.activePage?.setTextValue(newAmount)
             baseCurrencyView.activePage?.lblAvailableAmount.textColor = forAccount.amount - returnedValue < 0 ? .red : .white
         } else {
             guard let baseAccount = baseCurrencyView.activePage?.account else { return }
-            let newValue = calculator.exchange(returnedValue, fromCurrency: forAccount.currency, toCurrency: baseAccount.currency).roundedToHundreds
-            baseCurrencyView.activePage?.setTextValue(newValue)
-            baseCurrencyView.activePage?.lblAvailableAmount.textColor = baseAccount.amount - newValue < 0 ? .red : .white
+            let newAmount = calculator.exchange(returnedValue, fromCurrency: forAccount.currency, toCurrency: baseAccount.currency).roundedToHundreds
+            baseCurrencyView.activePage?.setTextValue(newAmount)
+            baseCurrencyView.activePage?.lblAvailableAmount.textColor = baseAccount.amount - newAmount < 0 ? .red : .white
         }
     }
     
@@ -150,10 +148,9 @@ extension ExchangeContainer: ExchangeScrollViewDelegate {
             //calculate active rate from base currency to exchnaged one
             activeRate = calculator.activeExchangeRate(fromCurrency: account.currency, toCurrency: otherAccount.currency)
             //if there is amount value in the section, which is not scrolled, update the value in the new section
-            if let otherValue = exchangedCurrencyView.activePage?.txtFieldAmount.text,
-                let floatValue = Float(otherValue) {
-                let newValue = calculator.exchange(floatValue, fromCurrency: otherAccount.currency, toCurrency: account.currency).roundedToHundreds
-                scrollView.activePage?.setTextValue(newValue)
+            if let amount = exchangedCurrencyView.activePage?.getValue() {
+                let newAmount = calculator.exchange(amount, fromCurrency: otherAccount.currency, toCurrency: account.currency).roundedToHundreds
+                scrollView.activePage?.setTextValue(newAmount)
                 //reset value in the section, which is not scrolled
             } else {
                 exchangedCurrencyView.activePage?.setTextValue(0)
@@ -163,10 +160,9 @@ extension ExchangeContainer: ExchangeScrollViewDelegate {
             //calculate active rate from base currency to exchnaged one
             activeRate = calculator.activeExchangeRate(fromCurrency: otherAccount.currency, toCurrency: account.currency)
             //if there is amount value in the section, which is not scrolled, update the value in the new section
-            if let otherValue = baseCurrencyView.activePage?.txtFieldAmount.text,
-                let floatValue = Float(otherValue) {
-                let newValue = calculator.exchange(floatValue, fromCurrency: otherAccount.currency, toCurrency: account.currency).roundedToHundreds
-                scrollView.activePage?.setTextValue(newValue)
+            if let amount = baseCurrencyView.activePage?.getValue() {
+                let newAmount = calculator.exchange(amount, fromCurrency: otherAccount.currency, toCurrency: account.currency).roundedToHundreds
+                scrollView.activePage?.setTextValue(newAmount)
                 //reset value in the section, which is not scrolled
             } else {
                 baseCurrencyView.activePage?.setTextValue(0)

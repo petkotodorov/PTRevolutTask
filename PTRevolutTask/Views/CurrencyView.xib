@@ -32,7 +32,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have.." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUJ-Rt-u9u">
-                    <rect key="frame" x="10" y="100" width="187.5" height="20"/>
+                    <rect key="frame" x="10" y="95" width="187.5" height="20"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -56,7 +56,7 @@
                 <constraint firstItem="ozn-Mb-POp" firstAttribute="leading" relation="lessThanOrEqual" secondItem="RRa-jK-sN0" secondAttribute="trailing" constant="20" id="eug-wm-oOo"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ozn-Mb-POp" secondAttribute="trailing" constant="10" id="rPI-0s-aEK"/>
                 <constraint firstItem="ozn-Mb-POp" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="xg7-6x-Lqw"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="uUJ-Rt-u9u" secondAttribute="bottom" constant="20" id="xtD-yT-P9N"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="uUJ-Rt-u9u" secondAttribute="bottom" constant="25" id="xtD-yT-P9N"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
