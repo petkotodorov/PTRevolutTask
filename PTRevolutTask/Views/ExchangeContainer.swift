@@ -51,10 +51,10 @@ class ExchangeContainer: UIView {
     }
     
     fileprivate func initViews() {
-        backgroundColor = .clear
         let width = UIScreen.main.bounds.width
         baseCurrencyView = ExchangeScrollView(frame: CGRect(x: 0, y: 0, width: width, height: bounds.height/2))
         baseCurrencyView.translatesAutoresizingMaskIntoConstraints = false
+        baseCurrencyView.backgroundColor = UIColor.customBlue
         addSubview(baseCurrencyView)
         NSLayoutConstraint.activate([
             baseCurrencyView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -88,7 +88,10 @@ class ExchangeContainer: UIView {
         guard basePage.getValue() != 0 else { throw ExchangeError.emptyField }
         guard baseAccount.amount - basePage.getValue() >= 0 else { throw ExchangeError.insufficienFunds }
         
-        delegate?.didExchange(basePage.getValue(), ofCurrency: baseAccount.currency, andReceived: exchangedPage.getValue(), ofOtherCurrency: exchangedAccount.currency)
+        delegate?.didExchange(basePage.getValue(),
+                              ofCurrency: baseAccount.currency,
+                              andReceived: exchangedPage.getValue(),
+                              ofOtherCurrency: exchangedAccount.currency)
         
         return true
     }
@@ -104,12 +107,12 @@ class ExchangeContainer: UIView {
             guard let currentValue = baseCurrencyField.text,
                 let floatValue = Float(currentValue) else { return }
             let newValue = calculator.exchange(floatValue, fromCurrency: baseAccount.currency, toCurrency: exchangeAccount.currency).roundedToHundreds
-            baseCurrencyView.activePage?.setTextValue(String(newValue))
+            baseCurrencyView.activePage?.setTextValue(newValue)
         } else if exchangeCurrencyField.isFirstResponder {
             guard let currentValue = exchangeCurrencyField.text,
                 let floatValue = Float(currentValue) else { return }
             let newValue = calculator.exchange(floatValue, fromCurrency: exchangeAccount.currency, toCurrency: baseAccount.currency).roundedToHundreds
-            exchangedCurrencyView.activePage?.setTextValue(String(newValue))
+            exchangedCurrencyView.activePage?.setTextValue(newValue)
         }
     }
     
@@ -128,11 +131,13 @@ extension ExchangeContainer: ExchangeScrollViewDelegate {
         if scrollView == baseCurrencyView {
             guard let otherAccount = exchangedCurrencyView.activePage?.account else { return }
             let newValue = calculator.exchange(returnedValue, fromCurrency: forAccount.currency, toCurrency: otherAccount.currency).roundedToHundreds
-            exchangedCurrencyView.activePage?.setTextValue(String(newValue))
+            exchangedCurrencyView.activePage?.setTextValue(newValue)
+            baseCurrencyView.activePage?.lblAvailableAmount.textColor = forAccount.amount - returnedValue < 0 ? .red : .white
         } else {
             guard let baseAccount = baseCurrencyView.activePage?.account else { return }
             let newValue = calculator.exchange(returnedValue, fromCurrency: forAccount.currency, toCurrency: baseAccount.currency).roundedToHundreds
-            baseCurrencyView.activePage?.setTextValue(String(newValue))
+            baseCurrencyView.activePage?.setTextValue(newValue)
+            baseCurrencyView.activePage?.lblAvailableAmount.textColor = baseAccount.amount - newValue < 0 ? .red : .white
         }
     }
     
@@ -148,10 +153,10 @@ extension ExchangeContainer: ExchangeScrollViewDelegate {
             if let otherValue = exchangedCurrencyView.activePage?.txtFieldAmount.text,
                 let floatValue = Float(otherValue) {
                 let newValue = calculator.exchange(floatValue, fromCurrency: otherAccount.currency, toCurrency: account.currency).roundedToHundreds
-                scrollView.activePage?.setTextValue(String(newValue))
+                scrollView.activePage?.setTextValue(newValue)
                 //reset value in the section, which is not scrolled
             } else {
-                exchangedCurrencyView.activePage?.setTextValue("")
+                exchangedCurrencyView.activePage?.setTextValue(0)
             }
         } else {
             guard let otherAccount = baseCurrencyView.activePage?.account else { return }
@@ -161,10 +166,10 @@ extension ExchangeContainer: ExchangeScrollViewDelegate {
             if let otherValue = baseCurrencyView.activePage?.txtFieldAmount.text,
                 let floatValue = Float(otherValue) {
                 let newValue = calculator.exchange(floatValue, fromCurrency: otherAccount.currency, toCurrency: account.currency).roundedToHundreds
-                scrollView.activePage?.setTextValue(String(newValue))
+                scrollView.activePage?.setTextValue(newValue)
                 //reset value in the section, which is not scrolled
             } else {
-                baseCurrencyView.activePage?.setTextValue("")
+                baseCurrencyView.activePage?.setTextValue(0)
             }
         }
         delegate?.didReturnActiveRate(activeRate)

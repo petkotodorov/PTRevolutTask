@@ -51,6 +51,11 @@ class ExchangeScrollView: UIView {
     //MARK: UI creation and update
     fileprivate func createUi() {
         guard dataSource != nil else { return }
+        
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.6
+        layer.shadowOffset = CGSize(width: 1, height: 1)
+        
         createScrollView()
         loadPages()
     }

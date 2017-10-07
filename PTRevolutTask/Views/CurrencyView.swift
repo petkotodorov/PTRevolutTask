@@ -41,8 +41,8 @@ class CurrencyView: UIView {
         txtFieldAmount.delegate = self
     }
     
-    func setTextValue(_ value: String) {
-        txtFieldAmount.text = value
+    func setTextValue(_ value: Float) {
+        txtFieldAmount.text = value == 0 ? "" : String(value)
     }
     
     func getValue() -> Float {
@@ -77,7 +77,7 @@ extension CurrencyView: UITextFieldDelegate {
         }
         return false
     }
-    
+        
 }
 
 
