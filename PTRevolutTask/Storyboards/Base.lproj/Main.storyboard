@@ -164,8 +164,8 @@
                                             <action selector="onExchange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TsU-Xj-5ly"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="V62-0G-omK">
-                                        <rect key="frame" x="109" y="0.0" width="157.5" height="44"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="V62-0G-omK" customClass="ActiveRateLabel" customModule="PTRevolutTask" customModuleProvider="target">
+                                        <rect key="frame" x="104" y="2" width="167.5" height="40"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -177,15 +177,14 @@
                                     <constraint firstAttribute="height" constant="44" id="C7A-78-gVX"/>
                                     <constraint firstItem="Zxv-po-sZ9" firstAttribute="width" secondItem="qvT-eu-waa" secondAttribute="width" multiplier="0.25" id="Cit-bt-6CM"/>
                                     <constraint firstItem="V62-0G-omK" firstAttribute="centerY" secondItem="qvT-eu-waa" secondAttribute="centerY" id="Q2M-pE-6Di"/>
-                                    <constraint firstItem="V62-0G-omK" firstAttribute="leading" secondItem="Zxv-po-sZ9" secondAttribute="trailing" constant="10" id="QE2-nn-IAO"/>
+                                    <constraint firstItem="V62-0G-omK" firstAttribute="leading" secondItem="Zxv-po-sZ9" secondAttribute="trailing" constant="5" id="QE2-nn-IAO"/>
                                     <constraint firstAttribute="trailing" secondItem="nbd-hQ-xfj" secondAttribute="trailing" constant="5" id="W0U-yY-RL0"/>
                                     <constraint firstItem="Zxv-po-sZ9" firstAttribute="centerY" secondItem="qvT-eu-waa" secondAttribute="centerY" id="dd5-ci-cgW"/>
                                     <constraint firstItem="nbd-hQ-xfj" firstAttribute="height" secondItem="Zxv-po-sZ9" secondAttribute="height" id="efn-k4-Ehl"/>
                                     <constraint firstItem="nbd-hQ-xfj" firstAttribute="width" secondItem="Zxv-po-sZ9" secondAttribute="width" id="i3U-6o-bxp"/>
-                                    <constraint firstItem="V62-0G-omK" firstAttribute="centerX" secondItem="qvT-eu-waa" secondAttribute="centerX" id="ocD-MC-f2V"/>
                                     <constraint firstItem="Zxv-po-sZ9" firstAttribute="height" secondItem="qvT-eu-waa" secondAttribute="height" id="rXy-wP-HDG"/>
-                                    <constraint firstItem="V62-0G-omK" firstAttribute="height" secondItem="Zxv-po-sZ9" secondAttribute="height" id="vOL-yF-5RZ"/>
-                                    <constraint firstItem="nbd-hQ-xfj" firstAttribute="leading" secondItem="V62-0G-omK" secondAttribute="trailing" constant="10" id="vwM-sR-bJK"/>
+                                    <constraint firstItem="V62-0G-omK" firstAttribute="height" secondItem="Zxv-po-sZ9" secondAttribute="height" multiplier="0.9" id="vOL-yF-5RZ"/>
+                                    <constraint firstItem="nbd-hQ-xfj" firstAttribute="leading" secondItem="V62-0G-omK" secondAttribute="trailing" constant="5" id="vwM-sR-bJK"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORt-vC-ns2" customClass="ExchangeContainer" customModule="PTRevolutTask" customModuleProvider="target">

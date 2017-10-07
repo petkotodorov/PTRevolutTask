@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIViewController {
-    func showAlert(withTitle title: String,
+    func showAlert(withTitle title: String = "Error",
                    withMessage message: String,
                    defaultButtonTitle buttonTitle: String = "OK",
                    buttonCallback callback: ((UIAlertAction) -> Void)? = nil) {

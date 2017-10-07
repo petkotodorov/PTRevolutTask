@@ -10,7 +10,7 @@ import UIKit
 
 class ExchangeViewController: UIViewController {
     
-    @IBOutlet weak var lblActiveRate: UILabel!
+    @IBOutlet weak var lblActiveRate: ActiveRateLabel!
     @IBOutlet weak var btnExchange: UIButton!
     @IBOutlet weak var currencyContainer: ExchangeContainer!
     
@@ -22,8 +22,9 @@ class ExchangeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         currencyContainer.accounts = userState.userAccounts
-        continuousFetching()
         currencyContainer.delegate = self
+        
+        setTimer()
         
         let gradientLayer = DoubleGradient()
         gradientLayer.frame = view.bounds
@@ -44,13 +45,13 @@ class ExchangeViewController: UIViewController {
         do {
             try successfulExchange = currencyContainer.exchangeCurrencies()
         } catch ExchangeError.generalError {
-            showAlert(withTitle: "Error", withMessage: "The exchange cannot be completed")
+            showAlert(withMessage: "The exchange cannot be completed")
         } catch ExchangeError.insufficienFunds {
-            showAlert(withTitle: "Error", withMessage: "You have insufficient funds")
+            showAlert(withMessage: "You have insufficient funds")
         } catch ExchangeError.sameCurrencies {
-            showAlert(withTitle: "Error", withMessage: "You cannot exchange the same currency")
+            showAlert(withMessage: "You cannot exchange the same currency")
         } catch ExchangeError.emptyField {
-            showAlert(withTitle: "Error", withMessage: "Please, input amount")
+            showAlert(withMessage: "Please, input amount")
         } catch{
         }
         guard successfulExchange != nil else { return }
@@ -61,23 +62,26 @@ class ExchangeViewController: UIViewController {
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = flag
         }
-        
     }
     
-    fileprivate func continuousFetching() {
+    fileprivate func setTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: repeatInterval, repeats: true) { [weak self] (_) in
-            self?.showLoading(true)
-            ApiClient.shared.fetchRates(completionHandler: { (result) -> (Void) in
-                self?.showLoading(false)
-                switch result {
-                case .success(let data):
-                    self?.currencyContainer.rates = Parser.parseXml(data)
-                case .failure(let errorMessage):
-                    self?.showAlert(withTitle: "Error", withMessage: errorMessage)
-                }
-            })
+            self?.fetchRates()
         }
         timer?.fire()
+    }
+    
+    fileprivate func fetchRates() {
+        self.showLoading(true)
+        ApiClient.shared.fetchRates(completionHandler: { (result) -> (Void) in
+            self.showLoading(false)
+            switch result {
+            case .success(let data):
+                self.currencyContainer.rates = Parser.parseXml(data)
+            case .failure(let errorMessage):
+                self.showAlert(withMessage: errorMessage)
+            }
+        })
     }
 
 }
@@ -91,6 +95,7 @@ extension ExchangeViewController: ExchangeDelegate {
     
     func didReturnActiveRate(_ activeRate: String) {
         DispatchQueue.main.async {
+            self.lblActiveRate.isHidden = activeRate.isEmpty
             self.lblActiveRate.text = activeRate
         }
     }
